@@ -1,0 +1,76 @@
+def display_menu():
+    print("""
+    Contact Book Menu:
+        1. Add Contact
+        2. View Contact
+        3. Edit Contact
+        4. Delete Contact
+        5. List All Contact
+        6. Exit
+    """)
+
+def add_contact(contact_book):
+    name = input("Enter a name:")
+    if name in contact_book:
+        print("Contact already exits!")
+        return
+    phone = input("Enter a phone:")
+    email = input("Enter a email:")
+    address = input("Enter a address:")
+    contact_book[name] = {
+        "phone": phone,
+        "email": email,
+        "address": address
+    }
+    print("Contact added successfully!")
+
+def view_contact(contact_book):
+    name = input("Enter a name:")
+    if name in contact_book:
+        contact = contact_book[name]
+        print(f"""
+        Name: {name}
+        Phone: {contact['phone']}
+        Email: {contact['email']}
+        Address: {contact['address']}
+              """)
+    else:
+        print("Contact not found!")
+
+def edit_contact(contact_book):
+    name = input()
+    if name in contact_book:
+        contact_book[name]['phone'] = input('Enter a phone:')
+        contact_book[name]['email'] = input('Enter a email:')
+        contact_book[name]['address'] = input('Enter a address')
+        print("Contact updated successfully!")
+    else:
+        print("Contact not found!")
+
+def delete_contact(contact_book):
+    name = input("Enter a name")
+    if name not in contact_book:
+        print("Contact not found!")
+    else:
+        del contact_book[name]
+        print("Contact deleted successfully!")
+
+def list_all_contacts(contact_book):
+    if not contact_book:
+        print("No contacts available.")
+    else:
+        for name, detail in contact_book.items():
+            print(f"""
+            Name: {name},
+            Phone: {detail['phone']}
+            Email: {detail['email']},
+            Address: {detail['address']}
+                  """)
+        
+contact_book = {"Alice": {"phone": "123-456-7890", "email": "alice@example.com", "address": "123 Main St"}}
+
+
+if __name__ == "__main__":
+    # delete_contact(contact_book)
+    # view_contact(contact_book)
+    list_all_contacts(contact_book)
